@@ -1,24 +1,59 @@
-# Logs
-logs
-*.log
+# General
+.DS_Store                # macOS system files
+Thumbs.db                # Windows system files
+
+# Node.js (Frontend - React + Vite)
+frontend/node_modules*         
+frontend/dist*                  # Build output for production
+frontend/.vite*                   # Vite cache files
+frontend/.env                     # Environment variables for the frontend
+
+# Logs (Frontend)
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-pnpm-debug.log*
-lerna-debug.log*
 
-node_modules
-dist
-dist-ssr
-*.local
+# ASP.NET Core (Backend)
+*.vs
+bin/                     # Compiled binary files
+obj/                     # Compiled object files
+*.user                   # Visual Studio specific user file
+*.suo                    # Solution User Options
+*.log                    # Log files
+.vscode/                 # VS Code settings, can be excluded for shared configurations
 
-# Editor directories and files
-.vscode/*
-!.vscode/extensions.json
-.idea
-.DS_Store
-*.suo
-*.ntvs*
-*.njsproj
-*.sln
-*.sw?
+# ASP.NET Environment (Backend)
+.env                     # Environment variables for backend
+appsettings.Development.json # Sensitive development configuration
+appsettings.Local.json   # Local configuration (if used)
+
+# Python (Microservice)
+__pycache__/             # Python cache files
+*.pyc                    # Python compiled bytecode
+env/                     # Python virtual environments
+venv/                    # Virtualenv
+*.env                    # Environment variables for microservice
+
+# Logs (Microservice)
+*.log                    # Log files
+
+# Docker
+docker-compose.override.yml  # Override files specific to local dev
+*.pid                        # PID files
+#docker-compose.yml           # Optional, if generated specifically for environments
+
+# Ignore Secrets and API Keys
+secrets/                 # If you store secret or API keys in a specific folder
+.env.*                   # Environment variable files
+
+# Firebase
+firebase-debug.log*      # Firebase logs (if using Firebase)
+
+# Generated files (for production, temporary files)
+dist/                    # Frontend build output
+out/                     # Output directory (if any is specified)
+coverage/                # Test coverage reports
+
+# Other Development Tool Specific Files
+.vscode/                 # VSCode settings specific to your machine
+.idea/                   # IntelliJ/JetBrains project files
