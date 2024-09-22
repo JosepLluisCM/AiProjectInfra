@@ -1,7 +1,11 @@
 # General
-.env
+*.env
+*.env.*
+!*.env.template
+!*.env.*.template
 .DS_Store
 .vscode/
+secrets/
 
 # Node.js (Frontend)
 frontend/node_modules/
@@ -21,3 +25,4 @@ microservice/venv/
 # Docker
 docker-compose.override.yml
 docker-compose.prod.yml
+.fake
