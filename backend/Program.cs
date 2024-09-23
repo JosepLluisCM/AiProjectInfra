@@ -7,15 +7,9 @@ var builder = WebApplication.CreateBuilder(args);
 
 Env.Load();
 
-string credentialsPath = Environment.GetEnvironmentVariable("GOOGLE_APPLICATION_CREDENTIALS");
-Environment.SetEnvironmentVariable("GOOGLE_APPLICATION_CREDENTIALS", credentialsPath);
+// Register FirestoreService as a singleton
+builder.Services.AddSingleton<FirestoreService>();
 
-string projectId = builder.Configuration["Firestore:ProjectId"] ?? Environment.GetEnvironmentVariable("GOOGLE_PROJECT_ID");
-builder.Services.AddSingleton(provider =>
-{
-    FirestoreDb db = FirestoreDb.Create(projectId);
-    return db;
-});
 
 
 builder.Services.AddControllers();
@@ -44,21 +38,4 @@ app.MapControllers();
 
 app.Run();
 
-try
-{
-    FirestoreDb db = FirestoreDb.Create(projectId);
-    Console.WriteLine("Successfully connected to Firestore.");
-
-    // Optionally, perform a simple operation
-    var collections = await db.ListRootCollectionsAsync().ToListAsync();
-    Console.WriteLine("Root collections:");
-    foreach (var collection in collections)
-    {
-        Console.WriteLine($"- {collection.Id}");
-    }
-}
-catch (Exception ex)
-{
-    Console.WriteLine($"Error connecting to Firestore: {ex.Message}");
-    throw; // Re-throw the exception to prevent the app from starting
-}
+/**/
